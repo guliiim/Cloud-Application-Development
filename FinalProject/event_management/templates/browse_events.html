@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Events</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    <h1>Please create event</h1>
+    <a href="{% url 'create_event' %}">Create Event</a></p>
+    <h1>Available Events</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <h2>{{ event.title }}</h2>
+                <p>{{ event.description }}</p>
+                <p>Date: {{ event.date }}</p>
+                <p>Location: {{ event.location }}</p>
+                <a href="{% url 'register_event' event.id %}">Register</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Submit Review Section -->
+    <h1>Submit a Review</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="event_id">Event:</label>
+        <select name="event_id" id="event_id" required>
+            {% for event in events %}
+                <option value="{{ event.id }}">{{ event.title }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" name="rating" id="rating" min="1" max="5" required><br>
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" required></textarea><br>
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>

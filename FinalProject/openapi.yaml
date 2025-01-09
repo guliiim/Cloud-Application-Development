@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: Event Management API
+  version: 1.0.0
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      description: Allows a user to register with a username, email, and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User registered successfully
+        '400':
+          description: Bad request (username already exists)
+
+  /create-event:
+    post:
+      summary: Create a new event
+      description: Allows an authenticated user to create a new event with title, description, date, time, and location.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                date_time:
+                  type: string
+                  format: date-time
+                location:
+                  type: string
+                categories:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Event created successfully
+        '400':
+          description: Bad request (missing required fields)
+
+  /register-event/{event_id}:
+    post:
+      summary: Register for an event
+      description: Allows an authenticated user to register for an event and select tickets.
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket_type:
+                  type: string
+                number_of_tickets:
+                  type: integer
+                registration_date:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Successfully registered for the event
+        '404':
+          description: Event not found
+        '400':
+          description: Bad request (invalid data)

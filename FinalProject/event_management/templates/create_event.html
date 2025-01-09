@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Event</title>
+</head>
+<body>
+    <h1>Create Event</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Title:</label>
+        <input type="text" name="title" required><br>
+        <label>Description:</label>
+        <textarea name="description" required></textarea><br>
+        <label>Date and Time:</label>
+        <input type="datetime-local" name="date_time" required><br>
+        <label>Location:</label>
+        <input type="text" name="location" required><br>
+        <label>Categories:</label><br>
+        {% for category in categories %}
+            <input type="checkbox" name="categories" value="{{ category.id }}"> {{ category.name }}<br>
+        {% endfor %}
+        <button type="submit">Create Event</button>
+    </form>
+</body>
+</html>

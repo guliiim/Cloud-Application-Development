@@ -1,0 +1,12 @@
+Django==4.2.1  
+gunicorn==20.1.0 
+django-crispy-forms==1.14.0  
+psycopg2-binary==2.9.7  
+djangorestframework==3.14.0  
+django-allauth==0.55.0 
+requests==2.31.0         
+django-storages==1.13.2  
+google-cloud-storage==2.9.0 
+google-auth==2.23.0    
+django-cors-headers==3.13.0  
+django-environ==0.8.2   

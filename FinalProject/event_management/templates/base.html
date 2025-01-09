@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Event Management{% endblock %}</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Home</a> |
+            <a href="{% url 'browse_events' %}">Browse Events</a> |
+            <a href="{% url 'manage_venues' %}">Manage Venues</a> |
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register for Event</title>
+</head>
+<body>
+    <h1>Register for {{ event.title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Ticket Type:</label>
+        <select name="ticket_type" required>
+            {% for ticket in tickets %}
+                <option value="{{ ticket.type }}">{{ ticket.type }} - ${{ ticket.price }}</option>
+            {% endfor %}
+        </select><br>
+        <label>Number of Tickets:</label>
+        <input type="number" name="number_of_tickets" min="1" required><br>
+        <label>Registration Date:</label>
+        <input type="date" name="registration_date" required><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
